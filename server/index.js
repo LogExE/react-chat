@@ -11,9 +11,9 @@ serv.on('connection', (sock) => {
 	sock.on('message', (data) => {
 		chan.emit('data', {author: random_shit, text: data.toString()});
 	});
+	sock.on('close', () => chan.emit('data', {author: 'SERVER', text: random_shit + ' left.'}));
 	chan.on('data', (data) => {
 		sock.send(JSON.stringify(data));
 	});
-	sock.on('close', () => chan.emit('data', {author: 'SERVER', text: random_shit + ' left.'}));
 	chan.emit('data', {author: 'SERVER', text: random_shit + ' joined.'});
 });
