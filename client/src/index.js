@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom/client');
 class Chat extends React.Component{
 	constructor(props){
 		super(props);
-		this.socket = new WebSocket('ws://' + window.location.hostname + ':7777');
+		this.socket = new WebSocket('ws://' + window.location.hostname + ':8080');
 		this.state = {messages: []};
 		this.socket.onopen = () => this.appendMessage({author: 'SYSTEM', text: 'Connected.'});
 		this.socket.onmessage = (event) => {
